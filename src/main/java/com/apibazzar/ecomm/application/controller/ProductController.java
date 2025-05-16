@@ -1,6 +1,8 @@
 package com.apibazzar.ecomm.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,10 +26,20 @@ public class ProductController {
 		return productService.addProduct(product);
 	}
 
-	// ProductController.java
 	@PutMapping("/update/{productId}")
 	public Product updateProductDetails(@PathVariable String productId, @RequestBody ProductUpdateRequest request) {
 		return productService.updateProductDetails(productId, request);
 	}
+	
+	@GetMapping("/{productId}")
+	public Product getProductById(@PathVariable String productId) {
+	    return productService.getProductById(productId);
+	}
+	
+	@DeleteMapping("/delete/{productId}")
+	public String deleteProduct(@PathVariable String productId) {
+	    return productService.deleteProduct(productId);
+	}
+
 
 }

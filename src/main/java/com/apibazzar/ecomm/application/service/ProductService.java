@@ -29,4 +29,18 @@ public class ProductService {
 
 	    return repository.save(product);
 	}
+	
+	public Product getProductById(String productId) {
+	    return repository.findById(productId)
+	            .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+	}
+	
+	public String deleteProduct(String productId) {
+	    Product product = repository.findById(productId)
+	            .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+	    repository.delete(product);
+	    return "Product with ID " + productId + " has been deleted successfully.";
+	}
+
+
 }
